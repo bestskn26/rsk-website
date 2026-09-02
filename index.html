@@ -150,6 +150,9 @@
     openingHours: "เพิ่มเวลาทำการภายหลัง",
     mapEmbedUrl: "",
     googleMapsUrl: "#",
+    founderName: "",
+    founderTitle: "ผู้ก่อตั้ง RSK ระยองเซียงกง",
+    founderQuote: "",
     stats: {
       years: "XX+",
       inventory: "XX,XXX+",
@@ -306,6 +309,37 @@
         <div class="img-slot rounded-xl aspect-[3/2]">
           <img src="images/store-01.jpg" alt="หน้าร้าน RSK ระยองเซียงกง" onerror="this.remove()">
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+  02b FOUNDER MESSAGE
+====================================================================== -->
+<section class="relative bg-ink py-24 md:py-32 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+
+      <div class="reveal lg:col-span-2">
+        <div class="img-slot rounded-xl aspect-[4/5]">
+          <img src="images/founder.jpg" alt="ผู้ก่อตั้ง RSK ระยองเซียงกง" onerror="this.remove()">
+        </div>
+      </div>
+
+      <div class="reveal lg:col-span-3">
+        <p class="font-mono text-gold text-xs tracking-[0.3em] uppercase mb-4">Founder's Message</p>
+        <h2 class="font-display font-bold text-3xl md:text-5xl leading-tight mb-8">สารจากผู้ก่อตั้ง</h2>
+        <blockquote class="border-l-2 border-gold pl-6 md:pl-8">
+          <p id="founderQuote" class="text-white/90 text-lg md:text-2xl leading-relaxed font-display font-light italic mb-6">
+            "[ ข้อความจากผู้ก่อตั้ง — เพิ่มภายหลัง ]"
+          </p>
+          <footer>
+            <p id="founderName" class="font-display font-semibold text-lg">ชื่อผู้ก่อตั้ง — เพิ่มภายหลัง</p>
+            <p id="founderTitle" class="text-steel text-sm mt-1">ผู้ก่อตั้ง RSK ระยองเซียงกง</p>
+          </footer>
+        </blockquote>
       </div>
 
     </div>
@@ -660,6 +694,9 @@
 
     setText('addressText', b.address);
     setText('hoursText', b.openingHours);
+    if (b.founderQuote) setText('founderQuote', '"' + b.founderQuote + '"');
+    setText('founderName', b.founderName);
+    setText('founderTitle', b.founderTitle);
 
     // Phone numbers: support multiple numbers separated by commas, each on its own line
     const setPhoneLines = (id) => {

@@ -1,0 +1,20 @@
+{
+  "name": "RSK ระยองเซียงกง",
+  "tagline": "ศูนย์รวมอะไหล่รถยนต์มือสองและมือหนึ่ง",
+  "phoneDisplay": "ใส่เบอร์โทรภายหลัง",
+  "phoneHref": "tel:",
+  "lineId": "ใส่ LINE ID ภายหลัง",
+  "lineHref": "#",
+  "facebookHref": "#",
+  "tiktokHref": "#",
+  "address": "ที่อยู่ร้าน — เพิ่มข้อมูลภายหลัง",
+  "openingHours": "เพิ่มเวลาทำการภายหลัง",
+  "mapEmbedUrl": "",
+  "googleMapsUrl": "#",
+  "stats": {
+    "years": "XX+",
+    "inventory": "XX,XXX+",
+    "warehouse": "XXX+",
+    "customers": "XX,XXX+"
+  }
+}

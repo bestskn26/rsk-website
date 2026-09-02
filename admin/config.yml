@@ -1,0 +1,68 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded photos are stored and how the site links to them.
+# This matches the /images/... paths already used across index.html.
+media_folder: "images"
+public_folder: "images"
+
+publish_mode: simple
+locale: "th"
+
+collections:
+  # ---------------------------------------------------------------
+  # ข้อมูลร้าน — เบอร์โทร, LINE, Facebook, ที่อยู่, เวลาทำการ, สถิติ
+  # แก้ที่นี่แล้วกด Publish จะอัปเดตทั่วทั้งเว็บทันที
+  # ---------------------------------------------------------------
+  - name: "business"
+    label: "ข้อมูลร้าน"
+    files:
+      - name: "settings"
+        label: "ข้อมูลติดต่อและสถิติร้าน"
+        file: "data/business.json"
+        fields:
+          - { label: "ชื่อร้าน", name: "name", widget: "string" }
+          - { label: "แท็กไลน์ใต้ชื่อร้าน", name: "tagline", widget: "string" }
+          - { label: "เบอร์โทร (แสดงผล เช่น 081-234-5678)", name: "phoneDisplay", widget: "string" }
+          - { label: "เบอร์โทร (ใช้กดโทรออก เช่น tel:0812345678)", name: "phoneHref", widget: "string" }
+          - { label: "LINE ID (แสดงผล เช่น @rskservice)", name: "lineId", widget: "string" }
+          - { label: "ลิงก์แอด LINE (เช่น https://line.me/ti/p/@xxxxx)", name: "lineHref", widget: "string" }
+          - { label: "ลิงก์ Facebook เพจ", name: "facebookHref", widget: "string" }
+          - { label: "ลิงก์ TikTok", name: "tiktokHref", widget: "string", required: false }
+          - { label: "ที่อยู่ร้าน (แบบเต็ม)", name: "address", widget: "text" }
+          - { label: "เวลาทำการ", name: "openingHours", widget: "string" }
+          - { label: "ลิงก์ Google Maps (สำหรับปุ่ม เปิด Google Maps)", name: "googleMapsUrl", widget: "string" }
+          - { label: "ลิงก์ Google Maps Embed (สำหรับแผนที่ฝังในหน้าเว็บ — เอาเฉพาะ URL จาก src=\"...\")", name: "mapEmbedUrl", widget: "string", required: false }
+          - label: "สถิติร้าน"
+            name: "stats"
+            widget: "object"
+            fields:
+              - { label: "ปีแห่งประสบการณ์ (เช่น 15+)", name: "years", widget: "string" }
+              - { label: "จำนวนรายการอะไหล่ (เช่น 15,000+)", name: "inventory", widget: "string" }
+              - { label: "พื้นที่จัดเก็บ ตร.ม. (เช่น 800+)", name: "warehouse", widget: "string" }
+              - { label: "จำนวนลูกค้า (เช่น 8,000+)", name: "customers", widget: "string" }
+
+  # ---------------------------------------------------------------
+  # รีวิวลูกค้า — เพิ่ม/แก้/ลบรีวิวได้อิสระ
+  # ---------------------------------------------------------------
+  - name: "reviews"
+    label: "รีวิวลูกค้า"
+    files:
+      - name: "reviews"
+        label: "รายการรีวิวทั้งหมด"
+        file: "data/reviews.json"
+        fields:
+          - label: "รีวิว"
+            name: "reviews"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.rating}} ดาว"
+            fields:
+              - { label: "ข้อความรีวิว", name: "text", widget: "text" }
+              - { label: "ชื่อลูกค้า", name: "name", widget: "string" }
+              - { label: "จำนวนดาว (1-5)", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
+
+# หมายเหตุ: การอัปโหลด/แทนที่รูปภาพ (โลโก้, hero, stock, gallery ฯลฯ)
+# ทำได้จากปุ่ม "Media" ที่แถบด้านบนของหน้าจอนี้ (ไอคอนรูปภาพ)
+# อัปโหลดแล้วตั้งชื่อไฟล์ให้ตรงกับที่เว็บใช้อยู่ เช่น hero.jpg, stock-01.jpg
+# ระบบจะแทนที่รูปเดิมในเว็บทันทีที่ชื่อไฟล์ตรงกัน

@@ -516,21 +516,16 @@
               <dd id="phoneText" class="text-white/90">ใส่เบอร์โทรภายหลัง</dd>
             </div>
           </div>
-          <div class="flex gap-4">
-            <dt class="text-gold shrink-0 mt-1">💬</dt>
-            <div>
-              <dt class="text-xs uppercase tracking-wide text-steel mb-1">LINE</dt>
-              <dd id="lineText" class="text-white/90">ใส่ LINE ID ภายหลัง</dd>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <dt class="text-gold shrink-0 mt-1">📘</dt>
-            <div>
-              <dt class="text-xs uppercase tracking-wide text-steel mb-1">Facebook</dt>
-              <dd><a id="fbText" href="#" class="text-white/90 hover:text-gold underline underline-offset-4">เพิ่มลิงก์ Facebook ภายหลัง</a></dd>
-            </div>
-          </div>
         </dl>
+
+        <div class="mt-8">
+          <p class="text-xs uppercase tracking-wide text-steel mb-3">ช่องทางติดต่อ</p>
+          <div class="flex gap-3">
+            <a id="locLine" href="#" aria-label="LINE" class="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center hover:border-gold hover:text-gold transition-colors text-sm font-bold">L</a>
+            <a id="locFb" href="#" aria-label="Facebook" class="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center hover:border-gold hover:text-gold transition-colors text-sm font-bold">f</a>
+            <a id="locTiktok" href="#" aria-label="TikTok" class="w-11 h-11 rounded-full border border-white/15 flex items-center justify-center hover:border-gold hover:text-gold transition-colors text-sm font-bold">T</a>
+          </div>
+        </div>
 
         <a id="mapsLinkBtn" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-9 border border-white/25 hover:border-gold hover:text-gold font-display font-medium px-6 py-3 rounded-md transition-colors text-sm">
           เปิด Google Maps ↗
@@ -538,7 +533,7 @@
       </div>
 
       <div class="reveal">
-        <div id="mapSlot" class="rounded-xl overflow-hidden border border-white/10 aspect-[4/3] bg-ink flex flex-col items-center justify-center gap-3 text-center p-8">
+        <div id="mapSlot" class="rounded-xl overflow-hidden border border-white/10 aspect-[4/3] md:aspect-auto md:h-[460px] lg:h-[560px] bg-ink flex flex-col items-center justify-center gap-3 text-center p-8">
           <span class="font-mono text-xs tracking-[0.15em] uppercase text-steel border border-white/15 px-3 py-1 rounded-full">Google Maps Embed</span>
           <p class="text-steel text-sm max-w-xs">วางลิงก์ Google Maps embed ใน <code class="text-gold">businessInfo.mapEmbedUrl</code> เพื่อแสดงแผนที่จริงที่นี่</p>
         </div>
@@ -648,17 +643,17 @@
     const setHref = (id, href) => { const el = document.getElementById(id); if (el && href) el.href = href; };
     const setText = (id, text) => { const el = document.getElementById(id); if (el && text) el.textContent = text; };
 
-    [b.lineHref].forEach(h => { ['heroLineBtn','ctaLineBtn','floatLine','footerLine'].forEach(id => setHref(id, h)); });
+    [b.lineHref].forEach(h => { ['heroLineBtn','ctaLineBtn','floatLine','footerLine','locLine'].forEach(id => setHref(id, h)); });
     [b.phoneHref].forEach(h => { ['ctaPhoneBtn','floatPhone'].forEach(id => setHref(id, h)); });
     setHref('footerFb', b.facebookHref);
     setHref('footerTiktok', b.tiktokHref);
-    setHref('fbText', b.facebookHref);
+    setHref('locFb', b.facebookHref);
+    setHref('locTiktok', b.tiktokHref);
     setHref('mapsLinkBtn', b.googleMapsUrl);
 
     setText('addressText', b.address);
     setText('hoursText', b.openingHours);
     setText('phoneText', b.phoneDisplay);
-    setText('lineText', b.lineId);
     document.querySelectorAll('.footer-phone').forEach(el => el.textContent = b.phoneDisplay);
     document.querySelectorAll('.footer-line').forEach(el => el.textContent = b.lineId);
     document.querySelectorAll('.footer-address').forEach(el => el.textContent = b.address);

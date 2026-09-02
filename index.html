@@ -664,8 +664,16 @@
     document.querySelectorAll('.stat-customers').forEach(el => el.textContent = b.stats.customers);
 
     if (b.mapEmbedUrl) {
+      // Safety net: if someone pastes the whole <iframe ...> tag instead of
+      // just the URL, pull the src="..." value out automatically so the map
+      // still renders instead of breaking.
+      let mapUrl = b.mapEmbedUrl.trim();
+      if (mapUrl.startsWith('<iframe')) {
+        const m = mapUrl.match(/src=["']([^"']+)["']/i);
+        if (m) mapUrl = m[1];
+      }
       const slot = document.getElementById('mapSlot');
-      slot.innerHTML = '<iframe src="'+ b.mapEmbedUrl +'" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="แผนที่ร้าน RSK ระยองเซียงกง"></iframe>';
+      slot.innerHTML = '<iframe src="'+ mapUrl +'" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="แผนที่ร้าน RSK ระยองเซียงกง"></iframe>';
       slot.classList.remove('flex','flex-col','items-center','justify-center','text-center','p-8');
     }
   }

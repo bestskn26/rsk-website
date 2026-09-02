@@ -33,7 +33,7 @@ collections:
           - { label: "ที่อยู่ร้าน (แบบเต็ม)", name: "address", widget: "text" }
           - { label: "เวลาทำการ", name: "openingHours", widget: "string" }
           - { label: "ลิงก์ Google Maps (สำหรับปุ่ม เปิด Google Maps)", name: "googleMapsUrl", widget: "string" }
-          - { label: "ลิงก์ Google Maps Embed (สำหรับแผนที่ฝังในหน้าเว็บ — เอาเฉพาะ URL จาก src=\"...\")", name: "mapEmbedUrl", widget: "string", required: false }
+          - { label: "ลิงก์ Google Maps Embed (⚠️ ใส่เฉพาะ URL เท่านั้น เช่น https://www.google.com/maps/embed?... — ห้ามวางทั้งแท็ก <iframe>...</iframe> เดี๋ยวแผนที่จะไม่ขึ้น)", name: "mapEmbedUrl", widget: "string", required: false }
           - label: "สถิติร้าน"
             name: "stats"
             widget: "object"

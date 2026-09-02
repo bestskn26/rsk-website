@@ -118,6 +118,21 @@
 
   .counter{font-variant-numeric:tabular-nums;}
 </style>
+
+<!-- Netlify Identity widget: needed on the root page too, since invite/
+     password-recovery links from Netlify point here first before /admin/ -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </head>
 
 <body class="bg-ink text-white antialiased">

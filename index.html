@@ -118,21 +118,6 @@
 
   .counter{font-variant-numeric:tabular-nums;}
 </style>
-
-<!-- Netlify Identity widget: needed on the root page too, since invite/
-     password-recovery links from Netlify point here first before /admin/ -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
 </head>
 
 <body class="bg-ink text-white antialiased">
@@ -441,12 +426,49 @@
       <h2 class="font-display font-bold text-3xl md:text-5xl leading-tight">บรรยากาศหน้าร้านและคลังสินค้า</h2>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="galleryGrid">
+    <div class="columns-2 md:columns-3 gap-4 space-y-4" id="galleryGrid">
       <!-- populated by JS -->
     </div>
   </div>
 </section>
 
+<!-- =====================================================================
+  07 USED & NEW PARTS — used-parts led (เชียงกง), new parts as secondary offering
+====================================================================== -->
+<section class="relative bg-ink py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl mb-14 md:mb-20 reveal">
+      <p class="font-mono text-gold text-xs tracking-[0.3em] uppercase mb-4">Used &amp; New</p>
+      <h2 class="font-display font-bold text-3xl md:text-5xl leading-tight">เน้นอะไหล่มือสอง<br>พร้อมมือหนึ่งให้เลือกเสริม</h2>
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-6 md:gap-8">
+      <div class="reveal card-hover relative rounded-xl overflow-hidden border border-white/10 group md:col-span-3">
+        <div class="img-slot aspect-[4/3]">
+          <img src="images/used-parts.jpg" alt="อะไหล่รถยนต์มือสอง เชียงกง RSK ระยองเซียงกง" onerror="this.remove()">
+          <div class="img-label"><span class="tag">Used Parts · images/used-parts.jpg</span></div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent flex flex-col justify-end p-7 md:p-9">
+          <span class="inline-block w-fit font-mono text-xs tracking-[0.2em] uppercase bg-gold text-ink px-3 py-1 rounded-full mb-3">เน้นหลัก · อะไหล่มือสอง</span>
+          <h3 class="font-display font-bold text-2xl md:text-3xl mb-2">USED PARTS</h3>
+          <p class="text-steel text-sm md:text-base leading-relaxed">อะไหล่มือสองจากสต๊อกจริง คัดเลือกและตรวจสอบก่อนส่ง — ความเชี่ยวชาญหลักของร้านเรา</p>
+        </div>
+      </div>
+
+      <div class="reveal card-hover relative rounded-xl overflow-hidden border border-white/10 group md:col-span-2">
+        <div class="img-slot aspect-[4/3]">
+          <img src="images/new-parts.jpg" alt="อะไหล่รถยนต์มือหนึ่ง" onerror="this.remove()">
+          <div class="img-label"><span class="tag">New Parts · images/new-parts.jpg</span></div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent flex flex-col justify-end p-7 md:p-9">
+          <span class="inline-block w-fit font-mono text-xs tracking-[0.2em] uppercase bg-royal text-white px-3 py-1 rounded-full mb-3">มีให้เลือกเสริม · อะไหล่มือหนึ่ง</span>
+          <h3 class="font-display font-bold text-2xl md:text-3xl mb-2">NEW PARTS</h3>
+          <p class="text-steel text-sm md:text-base leading-relaxed">อะไหล่มือหนึ่งสำหรับรถยนต์หลากหลายรุ่น</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- =====================================================================
   08 HOW TO ORDER
@@ -741,7 +763,7 @@
   const galleryImgs = [1,2,3,4,5,6].map(n => ({
     src: `images/gallery-0${n}.jpg`,
     alt: `บรรยากาศร้านและคลังอะไหล่ RSK ระยองเซียงกง ${n}`,
-    h: 'aspect-[1108/1477]'
+    h: [1,3,5].includes(n) ? 'aspect-[3/4]' : 'aspect-square'
   }));
   document.getElementById('galleryGrid').innerHTML = galleryImgs.map(g => `
     <div class="reveal card-hover break-inside-avoid rounded-lg overflow-hidden border border-white/10">

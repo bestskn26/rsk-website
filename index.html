@@ -660,8 +660,20 @@
 
     setText('addressText', b.address);
     setText('hoursText', b.openingHours);
-    setText('phoneText', b.phoneDisplay);
-    document.querySelectorAll('.footer-phone').forEach(el => el.textContent = b.phoneDisplay);
+
+    // Phone numbers: support multiple numbers separated by commas, each on its own line
+    const setPhoneLines = (id) => {
+      const el = document.getElementById(id);
+      if (!el || !b.phoneDisplay) return;
+      const numbers = b.phoneDisplay.split(',').map(n => n.trim()).filter(Boolean);
+      el.innerHTML = numbers.map(n => n.replace(/</g,'&lt;').replace(/>/g,'&gt;')).join('<br>');
+    };
+    setPhoneLines('phoneText');
+    document.querySelectorAll('.footer-phone').forEach(el => {
+      if (!b.phoneDisplay) return;
+      const numbers = b.phoneDisplay.split(',').map(n => n.trim()).filter(Boolean);
+      el.innerHTML = numbers.map(n => n.replace(/</g,'&lt;').replace(/>/g,'&gt;')).join('<br>');
+    });
     document.querySelectorAll('.footer-line').forEach(el => el.textContent = b.lineId);
     document.querySelectorAll('.footer-address').forEach(el => el.textContent = b.address);
 
